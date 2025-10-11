@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts where taken from google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- here I am adding trend brand icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    <title>FORMULARIO DE REGISTRO E INICIO DE SESION</title>
+</head>
+<body>
+<!-- Formulario crear cuenta -->
+    <div class="container-form register">
+        <div class="information">
+            <div class="info-childs">
+                <h2>Bienvenido</h2>
+                <p>Se parte de un cambio de vida real para tu mascota.</p>
+                <input type="button" value="Iniciar Sesion" id="sign-in">
+            </div>
+        </div>
+        <div class="form-information">
+           <div class="form-information-childs">
+                <h2>Crea una cuenta</h2>
+                <div class="icons">
+                    <i class="fa-brands fa-google"></i>
+                    <i class="fa-brands fa-square-github"></i>
+                </div>
+                <p>o usa tu email para registrate</p>
+                <!-- aqui usamos form y dentor de form label para agregar los inputs de los botones -->
+                <form class="form">
+                    <label>
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Nombre completo">
+                    </label>
+                    <label>
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Correo electronico">
+                    </label>
+                    <label>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Contraseña">
+                    </label>
+                    <input type="submit" value="Registrarse">
+                </form>
+           </div> 
+        </div>
+    </div>
+
+<!-- Formulario inicio sesion -->
+    <div class="container-form login hide"> <!-- se añade la clase hide para que usando java se añada o se oculte -->
+        <div class="information">
+            <div class="info-childs">
+                <h2>Bienvenido nuevamente</h2>
+                <p>Si aun no tienes cuenta por favor registrate aqui.</p>
+                <input type="button" value="Registrarse" id="sign-up">
+            </div>
+        </div>
+        <div class="form-information">
+           <div class="form-information-childs">
+                <h2>Iniciar Sesion</h2>
+                <div class="icons">
+                    <i class="fa-brands fa-google"></i>
+                    <i class="fa-brands fa-square-github"></i>
+                </div>
+                <p>o iniciar sesion con una cuenta</p>
+                <!-- aqui usamos form y dentor de form label para agregar los inputs de los botones -->
+                <form class="form">
+                    <label>
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Correo electronico">
+                    </label>
+                    <label>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Contraseña">
+                    </label>
+                    <input type="submit" value="Iniciar Sesion">
+                </form>
+           </div> 
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
