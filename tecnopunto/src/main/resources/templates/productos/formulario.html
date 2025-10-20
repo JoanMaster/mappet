@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+<body> 
+    <div th:replace="layout :: layout(~{::section})"> 
+        <section> 
+
+            <!-- Título dinámico --> 
+            <div class="d-flex justify-content-between align-items-center mb-4"> 
+                <h2 th:text="${producto.id != null ? 'Editar Producto' : 'Nuevo Producto'}">Nuevo Producto</h2> 
+                <a th:href="@{/productos}" class="btn btn-secondary"> 
+                    <i class="fas fa-arrow-left"></i> Volver a la lista 
+                </a> 
+            </div> 
+
+            
+            <!-- Formulario --> 
+            <div class="row justify-content-center"> 
+                <div class="col-md-8 col-lg-6"> 
+                    <div class="card shadow"> 
+                        <div class="card-body"> 
+                            <form th:action="@{/productos/guardar}" method="post" th:object="${producto}"> 
+                            
+
+                                <!-- ID oculto para edición --> 
+                                <input type="hidden" th:field="*{id}" /> 
+                                <input type="hidden" th:field="*{fechaCreacion}" /> 
+
+                                
+                                <!-- Campo Nombre --> 
+                                <div class="mb-3"> 
+                                    <label for="nombre" class="form-label"> 
+                                        <strong>Nombre del Producto</strong> <span class="text-danger">*</span> 
+                                    </label> 
+                                    <input type="text" 
+
+                                        class="form-control" 
+                                        id="nombre" 
+                                        th:field="*{nombre}" 
+                                        placeholder="Ej: iPhone 14 Pro" 
+                                        required> 
+                                    <div class="form-text">Ingresa el nombre completo del producto</div> 
+                                </div> 
+
+                            
+                                <!-- Campo Precio --> 
+                                <div class="mb-3"> 
+                                    <label for="precio" class="form-label"> 
+                                        <strong>Precio</strong> <span class="text-danger">*</span> 
+                                    </label> 
+                                    <div class="input-group"> 
+                                        <span class="input-group-text">$</span> 
+                                        <input type="number" 
+                                            class="form-control" 
+                                            id="precio" 
+                                            th:field="*{precio}" 
+                                            step="0.01" 
+                                            min="0" 
+                                            placeholder="0.00" 
+                                            required> 
+                                    </div> 
+                                    <div class="form-text">Precio en pesos colombianos</div> 
+                                </div> 
+
+                            
+                                <!-- Campo Descripción --> 
+                                <div class="mb-3"> 
+                                    <label for="descripcion" class="form-label"> 
+                                        <strong>Descripción</strong> 
+                                    </label> 
+
+                                    <textarea class="form-control" 
+                                            id="descripcion" 
+                                            th:field="*{descripcion}" 
+                                            rows="4" 
+                                            placeholder="Describe las características principales del producto..."></textarea> 
+                                    <div class="form-text">Información adicional sobre el producto (opcional)</div> 
+                                </div> 
+                            
+
+                                <!-- Campo Cantidad Stock --> 
+                                <div class="mb-3"> 
+                                    <label for="cantidadStock" class="form-label"> 
+                                        <strong>Cantidad en Stock</strong> <span class="text-danger">*</span> 
+                                    </label> 
+                                    <input type="number" 
+                                            class="form-control" 
+                                            id="cantidadStock" 
+                                            th:field="*{cantidadStock}" 
+                                            min="0" 
+                                            placeholder="0" 
+                                            required> 
+                                    <div class="form-text">Cantidad disponible en inventario</div> 
+                                </div> 
+
+                            
+                                <!-- Información de fechas (solo para edición) --> 
+                                <div th:if="${producto.id != null}" class="mb-3"> 
+                                    <div class="row"> 
+                                        <div class="col-md-6"> 
+                                            <label class="form-label"><strong>Fecha de Creación:</strong></label> 
+                                            <p class="text-muted" th:text="${producto.fechaCreacion != null ? 
+                                            #temporals.format(producto.fechaCreacion, 'dd/MM/yyyy') : 'No disponible'}">01/01/2024</p> 
+                                        </div> 
+                                        <div class="col-md-6" th:if="${producto.fechaUltimaModificacion != null}"> 
+
+                                            <label class="form-label"><strong>Última Modificación:</strong></label> 
+                                            <p class="text-muted" th:text="${#temporals.format(producto.fechaUltimaModificacion, 'dd/MM/yyyy')}">01/01/2024</p> 
+                                        </div> 
+                                    </div> 
+                                </div> 
+
+                            
+                                <!-- Botones --> 
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
+                                    <a th:href="@{/productos}" class="btn btn-outline-secondary me-md-2"> 
+                                        <i class="fas fa-times"></i> Cancelar 
+                                    </a> 
+                                    <button type="submit" class="btn btn-success"> 
+                                        <i class="fas fa-save"></i> 
+                                        <span th:text="${producto.id != null ? 'Actualizar' : 'Guardar'}">Guardar</span> 
+                                    </button> 
+                                </div> 
+
+                            
+                            </form> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+
+            
+            <!-- Información adicional --> 
+            <div class="row justify-content-center mt-4" th:if="${producto.id != null}"> 
+                <div class="col-md-8 col-lg-6"> 
+                    <div class="alert alert-info"> 
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>Editando producto:</strong> Los cambios se guardarán inmediatamente al hacer clic en "Actualizar". 
+                    </div> 
+                </div> 
+
+            </div> 
+        
+
+        </section> 
+    </div> 
+    
+
+    <!-- Font Awesome para iconos (opcional) --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+</body> 
+</html> 

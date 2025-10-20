@@ -1,0 +1,16 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+
+ 
+<body> 
+    <div th:replace="layout :: layout(~{::section})"> 
+        <section class="text-center"> 
+            <h1 class="display-4 fw-bold">Bienvenido a TecnoPunto</h1> 
+            <p class="lead">Tienda especializada en productos tecnológicos</p> 
+            <a th:href="@{/productos}" class="btn btn-primary btn-lg mt-3">Ver Productos</a> 
+        </section> 
+    </div> 
+</body> 
+
+ 
+</html> 
